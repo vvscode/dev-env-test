@@ -1,8 +1,14 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.ts",
+  devtool: "eval-source-map",
+  resolve: {
+    extensions: [".js", ".ts"],
+  },
   output: {
     filename: "script.js",
     path: path.resolve(__dirname, "dist"),
@@ -18,13 +24,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.(t|j)s$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
-          options: {
-            presets: [["@babel/preset-env", { targets: "ie 11" }]],
-          },
         },
       },
     ],

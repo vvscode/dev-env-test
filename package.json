@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "lint": "prettier --check . && eslint .",
-    "lint:fix": "prettier --write . && eslint . --fix",
+    "lint": "prettier --check . && eslint . --ext .js,.ts && tsc --noEmit",
+    "lint:fix": "prettier --write . && eslint . --fix --ext .js,.ts",
     "prepare": "husky install",
     "build": "webpack --mode=production",
     "start": "webpack serve --mode=development",
@@ -26,26 +26,30 @@
   "devDependencies": {
     "@babel/core": "^7.14.2",
     "@babel/preset-env": "^7.14.2",
+    "@babel/preset-typescript": "^7.14.5",
     "@types/jest": "^26.0.23",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
-    "eslint": "^7.25.0",
+    "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.3.6",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^5.3.1",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
+    "typescript": "^4.3.4",
     "webpack": "^5.37.0",
     "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2",
-    "gh-pages": "^3.1.0"
+    "webpack-dev-server": "^3.11.2"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
+    "*.{js,ts}": "eslint --cache --fix --ext .js,.ts",
+    "*.{js,css,md,ts,json}": "prettier --write"
   }
 }
